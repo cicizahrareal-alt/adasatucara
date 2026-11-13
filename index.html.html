@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base target="_top"> 
+    <title>10.000+ Halaman Worksheet Anak</title>
+    
+    <!-- Google Fonts: Nunito -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { nunito: ['Nunito', 'sans-serif'] },
+                    colors: {
+                        text: { main: '#2D3748' }
+                    },
+                    boxShadow: {
+                        'clay': '8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff, inset 2px 2px 4px rgba(255,255,255,0.7)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .clay-card {
+                @apply bg-white rounded-3xl shadow-clay border border-white/60 transition-all duration-300;
+            }
+            @keyframes dropAndRoll {
+                0%, 15% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
+                25% { transform: translateY(70px) translateX(0) rotate(90deg); opacity: 1; }
+                40% { transform: translateY(70px) translateX(60px) rotate(360deg); opacity: 1; }
+                50% { transform: translateY(150px) translateX(60px) rotate(450deg); opacity: 0; }
+                55% { transform: translateY(-100px) translateX(0) rotate(0deg); opacity: 0; }
+                65%, 100% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
+            }
+            .playful-zero {
+                display: inline-block;
+                animation: dropAndRoll 7s infinite ease-in-out;
+            }
+            .delay-1 { animation-delay: 0s; }
+            .delay-2 { animation-delay: 0.3s; }
+            .delay-3 { animation-delay: 0.6s; }
+            .delay-4 { animation-delay: 0.9s; }
+        }
+        body {
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            background-color: #F8FAFC;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(210,100%,93%,1) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(339,100%,94%,1) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, hsla(39,100%,92%,1) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="font-nunito text-text-main antialiased min-h-screen selection:bg-pink-200 selection:text-pink-900 overflow-x-hidden">
+
+    <!-- Header Section -->
+    <main class="pt-16 md:pt-20 pb-10 md:pb-12 px-4 sm:px-6 max-w-5xl mx-auto text-center">
+        <h1 class="text-3xl min-[375px]:text-4xl sm:text-5xl md:text-6xl font-black leading-tight mb-8 sm:mb-12 tracking-tight relative z-10">
+            <span class="block mb-1 sm:mb-2">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-500">1</span><span class="playful-zero delay-1 text-indigo-400 drop-shadow-sm">0</span><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-400">.</span><span class="playful-zero delay-2 text-pink-400 drop-shadow-sm">0</span><span class="playful-zero delay-3 text-orange-400 drop-shadow-sm">0</span><span class="playful-zero delay-4 text-teal-400 drop-shadow-sm">0</span><span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-purple-600">+ HALAMAN</span>
+            </span>
+            <span class="block text-[#2D3748]">WORKSHEET ANAK</span>
+        </h1>
+        
+        <!-- Search Bar Berfungsi -->
+        <div class="max-w-xl mx-auto px-2 sm:px-0 relative z-20">
+            <div class="relative clay-card flex items-center p-1.5 sm:p-2 bg-white rounded-full transition-shadow duration-300 focus-within:shadow-xl">
+                <div class="pl-4 sm:pl-5 pr-2 sm:pr-3 text-gray-400">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+                <!-- Input Pencarian -->
+                <input type="text" id="searchInput" placeholder="Cari worksheet..." class="w-full py-2.5 sm:py-3 pr-4 sm:pr-6 bg-transparent border-none outline-none text-text-main text-[16px] sm:text-base font-bold placeholder-gray-400">
+            </div>
+        </div>
+    </main>
+
+    <!-- Folder Container (Kosong, akan diisi oleh JavaScript) -->
+    <section class="pb-24 px-4 sm:px-6 max-w-7xl mx-auto">
+        <div id="folderContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6">
+            <!-- Data akan dirender otomatis oleh JS di sini -->
+        </div>
+        
+        <!-- Pesan jika pencarian tidak ditemukan -->
+        <div id="notFoundMessage" class="hidden text-center text-gray-500 font-bold mt-10">
+            Yah, worksheet yang kamu cari tidak ditemukan 😢
+        </div>
+    </section>
+
+    <!-- JAVASCRIPT UNTUK MERENDER DATA -->
+    <script>
+        // Array Data 147 Folder
+        const foldersData = [
+            { id: 1, name: "SERI ALFABET", link: "https://drive.google.com/file/d/1TR3hW6Ta8EW6JM1tsCQ7rFKMreN8O-rH/view" },
+            { id: 2, name: "SERI ANGGOTA TUBUH", link: "https://drive.google.com/file/d/1YDi_3UelzpYWfCOoUkX9U7ZOjzqPld1W/view" },
+            { id: 3, name: "SERI SAYUR - SAYURAN", link: "https://drive.google.com/file/d/1UT6VdkjsW9-suNpMsb3cowtFpxT04Pe-/view" },
+            { id: 4, name: "SERI BUAH - BUAHAN", link: "https://drive.google.com/file/d/15MGiMf5E5DHXNg3KX_JSYpzBJUCN9ZzF/view" },
+            { id: 5, name: "SERI PROFESI", link: "https://drive.google.com/file/d/1b2Tu4Yu0d4Xc0tn5ctk-N1AtYqaZH9gs/view" },
+            { id: 6, name: "SERI MENGENAL WAKTU", link: "https://drive.google.com/file/d/12-hBD50NAIPqZ3IOL-MqPpGtizl_zu1x/view" },
+            { id: 7, name: "SERI MENGENAL TEMPAT", link: "https://drive.google.com/file/d/1C5ZnU-O-sg7SO3TRoVkZQTJfF8KkLzTs/view" },
+            { id: 8, name: "SERI MENGENAL KENDARAAN", link: "https://drive.google.com/file/d/1uZLRPXdLW9nG-bV_8feHjEE6drxyOKpO/view" },
+            { id: 9, name: "SERI MENGENAL DINOSAURUS", link: "https://drive.google.com/file/d/1mA0TCskvKBRnPL1Qlgjv7Gy0bSaSjjwS/view" },
+            { id: 10, name: "SERI BERHITUNG", link: "https://drive.google.com/file/d/1MfzAHmiw7P8wLepiQCrmdug3B9asnDfl/view" },
+            { id: 11, name: "SERI BENDA SEKITAR", link: "https://drive.google.com/file/d/1N_EXAhiskfsW81pspsm8t6kOjGjxuVQf/view" },
+            { id: 12, name: "SERI ANGKA BAHASA ARAB", link: "https://drive.google.com/file/d/1jxmkcm6EVWbr9NXK-3qdFJaoqhd1rwT3/view" },
+            { id: 13, name: "SERI ASMAUL HUSNA", link: "https://drive.google.com/file/d/1Ab8vFyHh0QCWgWIlQk4lGgUXlcPXmS0N/view" },
+            { id: 14, name: "SERI BULAN HIJRIAH", link: "https://drive.google.com/file/d/1KugK1Qsd6b65yOEA_VKRaY1xmMjnUDBH/view" },
+            { id: 15, name: "SERI DOA - DOA PENDEK", link: "https://drive.google.com/file/d/192KqXLQqYLOOqfmVn4HTByM1qOR1rFBr/view" },
+            { id: 16, name: "SERI HADITS PENDEK", link: "https://drive.google.com/file/d/1FXaAOQnfN43xd8o1MkoEv2mkrfzaGw51/view" },
+            { id: 17, name: "SERI HAJI & UMRAH", link: "https://drive.google.com/file/d/1Rlp3Qemt6w37Cm4wfZpmNXJjUr5Ns-QZ/view" },
+            { id: 18, name: "SERI HARI BESAR ISLAM", link: "https://drive.google.com/file/d/19HNd1wRXusJvo3zmm4J20vBfOU5RMoSW/view" },
+            { id: 19, name: "SERI MENGENAL KIAMAT", link: "https://drive.google.com/file/d/19TfEzkzbCZ7p-0qXPlwpGCyme5Oas0sS/view" },
+            { id: 20, name: "SERI HURUF HIJAIYAH", link: "https://drive.google.com/file/d/1B8YoKbNsIa2Cz17eKem4wo7slBunPDha/view" },
+            { id: 21, name: "SERI KALIMAT THAYYIBAH", link: "https://drive.google.com/file/d/1bwqHVl2yyQD9XO3mSTepu-NU8vxEp3_J/view" },
+            { id: 22, name: "SERI MAKANAN HALAL", link: "https://drive.google.com/file/d/1x64gFe78OZYXHGiSJ2A_Wxj5zzvHEo3R/view" },
+            { id: 23, name: "SERI MENGENAL HARAKAT", link: "https://drive.google.com/file/d/1TaWtiDXuIHcnTq3fSeTQ5cml-Evp8kX2/view" },
+            { id: 24, name: "SERI NABI & RASUL", link: "https://drive.google.com/file/d/1tHgzOiwtSATyotnCwbV0yfdBckViYyxG/view" },
+            { id: 25, name: "SERI MENGENAL NAJIS", link: "https://drive.google.com/file/d/145DgFk3PmfNbNff5G-H8CA_hdmh2-nQh/view" },
+            { id: 26, name: "SERI NAMA MALAIKAT", link: "https://drive.google.com/file/d/1er464xvpIrBNIPdtHgEkAKRJLewSwzCe/view" },
+            { id: 27, name: "SERI PERBUATAN TERPUJI", link: "https://drive.google.com/file/d/17ygdQnHBKr8VKi0_av1y_Z7pHxaQKTAH/view" },
+            { id: 28, name: "SERI PUASA", link: "https://drive.google.com/file/d/1DESLk9jVSVpEXhUrjORr7u1X5ysvnz43/view" },
+            { id: 29, name: "SERI RUKUN IMAN & ISLAM", link: "https://drive.google.com/file/d/1ED7_pZQuC-bFu346Zk534wNn6ymhTHuK/view" },
+            { id: 30, name: "SERI SHOLAT & WUDHU", link: "https://drive.google.com/file/d/1h-lD93qgHqm221priLwvXOg4YoIK0x2-/view" },
+            { id: 31, name: "SERI SIFAT - SIFAT ALLAH", link: "https://drive.google.com/file/d/1uSDBjbrg7LK-dMMMiBjC4Wdn9X21R9o6/view" },
+            { id: 32, name: "SERI SURAT PENDEK", link: "https://drive.google.com/file/d/16wDf33akszVvs1NZ282Ru4NO0oGJ66dq/view" },
+            { id: 33, name: "SERI SURGA & NERAKA", link: "https://drive.google.com/file/d/1XsJPivmhNeQjOYMFzqMOVTmMsyB6OY0t/view" },
+            { id: 34, name: "SERI MEWARNAI", link: "https://drive.google.com/file/d/1EG3YGvDi8Mu2RpjRGDtUKOOfgDTQcFaw/view" },
+            { id: 35, name: "SERI CAMPURAN", link: "https://drive.google.com/file/d/12Ylp7_gZ-NdzI_ketdvR4FoqzlHULBH0/view" },
+            { id: 36, name: "SERI HAFALAN HARIAN", link: "https://drive.google.com/file/d/1qsadrCi7V0DXomcyoAtlKh-GatDO8ibk/view" },
+            { id: 37, name: "SERI TRACING & COLORING", link: "https://drive.google.com/file/d/1lP63CUb4KRsPWRrub559GvbSArPdtdoi/view" },
+            { id: 38, name: "SERI RAMADHAN FOR KIDS", link: "https://drive.google.com/file/d/1dTphJZ5ibiXEUFoS7BOiTQEV8f9scgph/view" },
+            { id: 39, name: "SERI RAMADHAN FOR MOMS", link: "https://drive.google.com/file/d/1UVvXHwwdkkseo2oX6AvAmo8BSacLfa9V/view" },
+            { id: 40, name: "SERI ASMAUL HUSNA", link: "https://drive.google.com/file/d/14CKe8Y8i9li1uGV5Ac1BlTeR6EbAIkY-/view" },
+            { id: 41, name: "SERI HURUF HIJAIYAH", link: "https://drive.google.com/file/d/1D6wXXi45GP3kwuuqiZKe6zBXALZnU717/view" },
+            { id: 42, name: "SERI MEWARNAI KALIGRAFI", link: "https://drive.google.com/file/d/1AhNCP6xlAb54NGPTLWmgX11V0Hu84bnr/view" },
+            { id: 43, name: "SERI MENULIS HIJAIYAH", link: "https://drive.google.com/file/d/1ngveJbJGjs3MvI84aXP5C7gF7oXpjaTQ/view" },
+            { id: 44, name: "SERI OHANA ANAK MUSLIM", link: "https://drive.google.com/file/d/1bppe9OUCs-DL8CjDi8BjCo8dEJ-h9QwV/view" },
+            { id: 45, name: "SERI HEWAN LAUT", link: "https://drive.google.com/file/d/1p2GmlQHXcG58mmBxtnYEl6xzoRLwnRuW/view" },
+            { id: 46, name: "SERI MEWARNAI HEWAN 1", link: "https://drive.google.com/file/d/1yXxJVC9gp-5HkO539vo2sv8Z0CvxMLEI/view" },
+            { id: 47, name: "SERI MEWARNAI HEWAN 2", link: "https://drive.google.com/file/d/1Jms5GLms8C4Jtdb4ntse9q2k8CBDDi4G/view" },
+            { id: 48, name: "SERI MENGENAL BUAH", link: "https://drive.google.com/file/d/1SGXe9dlO7AhtEsnxmrvCkZzVG_xZXryr/view" },
+            { id: 49, name: "SERI BELAJAR MEWARNAI", link: "https://drive.google.com/file/d/1bTtiTamtIrft53jTnlMtHXDrTins5PTh/view" },
+            { id: 50, name: "SERI MEWARNAI SAYUR", link: "https://drive.google.com/file/d/16xL7Y69AcMhloYuo-lVldP4UtWGQA9F1/view" },
+            { id: 51, name: "SERI MEWARNAI HEWAN 3", link: "https://drive.google.com/file/d/1wwff1tb_t3H0D2p-nut9_aUKF3XLtrfh/view" },
+            { id: 52, name: "SERI BELAJAR LABIRIN", link: "https://drive.google.com/file/d/1VsAZs4yEY39TncJr9jNYMQPDBwSWVL_S/view" },
+            { id: 53, name: "SERI BINATANG BUAS", link: "https://drive.google.com/file/d/1xHuDGtBL2gKX7pu8me69zv4_CxGE9LgF/view" },
+            { id: 54, name: "SERI UNGGAS", link: "https://drive.google.com/file/d/1ESlQHTWAND5XG236qJM9Af8T8u-6JW9j/view" },
+            { id: 55, name: "SERI MEWARNAI KENDARAAN", link: "https://drive.google.com/file/d/1TrR4D-J8n9NqLNstPXiOz4wb9gWIbxYO/view" },
+            { id: 56, name: "SERI MEWARNAI ALAT BERAT", link: "https://drive.google.com/file/d/1HQxsGPWuLUgvFc8tHGDlrDddnfLsS2L1/view" },
+            { id: 57, name: "SERI HEWAN HERBIVORA", link: "https://drive.google.com/file/d/1Qw6rEDShL0JoqfzJfqkWWB0J5pqXytZd/view" },
+            { id: 58, name: "SERI MEWARNAI ASTRONOT", link: "https://drive.google.com/file/d/1Gm2EH8hQGH0c7DGxZCrVZBkahFcr4IEp/view" },
+            { id: 59, name: "SERI MEWARNAI BENDA SEKITAR", link: "https://drive.google.com/file/d/1-SE_XVRjOutbnQuJFVrqM_gel1o0-d4u/view" },
+            { id: 60, name: "SERI MEWARNAI BENDERA", link: "https://drive.google.com/file/d/17k7QgZNOtnJAcpbilG3M-T6qsaCIKNGS/view" },
+            { id: 61, name: "SERI MEWARNAI JENIS OLAHRAGA", link: "https://drive.google.com/file/d/1lmiJEU5unLeRO7fLRSOwRi2uFbAiRbLM/view" },
+            { id: 62, name: "SERI MEWARNAI ALAT MUSIK", link: "https://drive.google.com/file/d/1TcjvUX0CaY9BEuc8EOc_FcipmizhC91E/view" },
+            { id: 63, name: "SERI MAKANAN KHAS INDONESIA", link: "https://drive.google.com/file/d/1R2GnWfYLFbRELF0n8eGibURyUre5xwDF/view" },
+            { id: 64, name: "SERI PAKAIAN ADAT", link: "https://drive.google.com/file/d/1CASViqMazSco4oFQyi6UZvEHqA8EO9NY/view" },
+            { id: 65, name: "SERI MEWARNAI BANGUNAN", link: "https://drive.google.com/file/d/1rkBXJ-h1ozumJ0rxKFdQyben1W4HeJBm/view" },
+            { id: 66, name: "SERI ALAT ELEKTRONIK", link: "https://drive.google.com/file/d/1XA1JZjdq0iD4QxRe4fAI9XHd4zu99ApE/view" },
+            { id: 67, name: "SERI PERALATAN KEBUN", link: "https://drive.google.com/file/d/1GR7I2ugVJybDlc5xBQ5nbWsb-1bR6xKH/view" },
+            { id: 68, name: "SERI BINATANG BUAS & JINAK", link: "https://drive.google.com/file/d/1vAdX3s38G6Ced-u6iAEn9wbF6t-TMk4E/view" },
+            { id: 69, name: "SERI FRUITS COLORING", link: "https://drive.google.com/file/d/1vx_MjVb9bFoSCM3XOspNgKcL39DAgi7W/view" },
+            { id: 70, name: "SERI MEWARNAI PETA", link: "https://drive.google.com/file/d/1iwEpsygGE3FEc6LXLUyZaAjUd50L7mbj/view" },
+            { id: 71, name: "SERI HEWAN 4", link: "https://drive.google.com/file/d/1engFYJaRxKGd5T1aj6-iBPCblKlT28CD/view" },
+            { id: 72, name: "SERI BUAH SEGAR", link: "https://drive.google.com/file/d/1WkqZ7ZtFjgEY2GL8TsGDXQ4vGq7mMRQJ/view" },
+            { id: 73, name: "SERI HEWAN 5", link: "https://drive.google.com/file/d/1OUdnhLB2BIrAXJCsCfaXX1BwgBRuIiuV/view" },
+            { id: 74, name: "SERI HEWAN LAUT NEW", link: "https://drive.google.com/file/d/1WDDgUMTyQeuNI80GhPVWv9j6PtoIG3GN/view" },
+            { id: 75, name: "SERI ALAT TULIS", link: "https://drive.google.com/file/d/1fj9ql11JduF9_nS0FzIReF2pnL3O0N2w/view" },
+            { id: 76, name: "SERI MEWARNAI BURUNG", link: "https://drive.google.com/file/d/1fxuTUlRQag0SKsV2_-3bZ6-MJsuSCRZZ/view" },
+            { id: 77, name: "SERI HEWAN 6", link: "https://drive.google.com/file/d/1oR7TzLfi6WePZgghJYjlHgw6yh6zj0pK/view" },
+            { id: 78, name: "SERI POHON", link: "https://drive.google.com/file/d/1Yg1-xCUysLoiiygqfwT-kc-T23PUn20h/view" },
+            { id: 79, name: "SERI TRACKING LINE", link: "https://drive.google.com/file/d/1qsEwfpO2BMviikwyCzvNIz1KMJ7i5Y9v/view" },
+            { id: 80, name: "SERI BENDA", link: "https://drive.google.com/file/d/1yfqv6YfRRNt0Gpxz46I-POkJOAacCFbu/view" },
+            { id: 81, name: "SERI BUAH - BUAHAN 2", link: "https://drive.google.com/file/d/1pbdiUfIdtASt3Uk1kFF_dC0Qnx87uPR6/view" },
+            { id: 82, name: "SERI BUNGA", link: "https://drive.google.com/file/d/17UjgslUEgdbFiWxUInSjup2216gTsDi8/view" },
+            { id: 83, name: "SERI HEWAN LAUT 2", link: "https://drive.google.com/file/d/1gBipmScYq7cclZUFTCyimBGZ2C0276Vx/view" },
+            { id: 84, name: "SERI MENGENAL HEWAN", link: "https://drive.google.com/file/d/1E6emL42Fmp-AX7Pi1KBzGGp2LeMQ2sGQ/view" },
+            { id: 85, name: "SERI MENGENAL PLANET", link: "https://drive.google.com/file/d/1Uyeu9traLburAsuRkxpRcBQcdSOfxg0_/view" },
+            { id: 86, name: "SERI PROFESI KIDZ", link: "https://drive.google.com/file/d/1F01EffV5bojgIIEfVTLxOpWDpq2ZVkHC/view" },
+            { id: 87, name: "SERI SAYURAN", link: "https://drive.google.com/file/d/1Yv7HjIdxkL9P1EMDSgiwYnkZOPba2vIt/view" },
+            { id: 88, name: "SERI BANGUNAN UTAMA", link: "https://drive.google.com/file/d/1LFKQmu6eX4lldfd97ina06PycjECfXWb/view" },
+            { id: 89, name: "SERI TRANSPORTASI", link: "https://drive.google.com/file/d/1O352yzSs_VgkFVIvFn9zPDiPVTuydBdA/view" },
+            { id: 90, name: "SERI FLOWERS", link: "https://drive.google.com/file/d/1XFdTf5Vl-oGB0HDI8HHWf-00EIpAw5KD/view" },
+            { id: 91, name: "SERI HEWAN LUCU", link: "https://drive.google.com/file/d/1scJEv8lf4XoUYbVqTxhtLWL-DKAXixF4/view" },
+            { id: 92, name: "SERI PROFESI NEW", link: "https://drive.google.com/file/d/18by_l_wOsEqLaH7SpRrsa6uVPf5SQGAL/view" },
+            { id: 93, name: "SERI TRANSPORTASI NEW", link: "https://drive.google.com/file/d/1-9SD6Qbj7h2sknbgI249UO4V5uhdyOEe/view" },
+            { id: 94, name: "SERI ALAT MUSIK NEW", link: "https://drive.google.com/file/d/1hqtyYNdKlF-eTU8In_34wWETuD7JjXp-/view" },
+            { id: 95, name: "SERI TATA SURYA NEW", link: "https://drive.google.com/file/d/1LKnXS8m4-qaJnxSvoj_kyFQUF9hGrmqG/view" },
+            { id: 96, name: "SERI HEWAN CUTE", link: "https://drive.google.com/file/d/1y2g0r5Pd8gvmyFanaALxf36ml8_8c9Jx/view" },
+            { id: 97, name: "SERI KEARIFAN LOKAL", link: "https://drive.google.com/file/d/1U5BTpbQUzYODaSYisIGgGTB-lWeyTDa_/view" },
+            { id: 98, name: "SERI TEBAK GAMBAR", link: "https://drive.google.com/file/d/10kAL_75NuwMleC0S0-W28riOnfCL3U09/view" },
+            { id: 99, name: "SERI MEWARNAI HEWAN 7", link: "https://drive.google.com/file/d/1H4N5PWcAdYlk2oUtNeeXQ1YyprQEhg1F/view" },
+            { id: 100, name: "SERI MEWARNAI HEWAN 8", link: "https://drive.google.com/file/d/1xGdknQ4QBZjOqNWdkNvmjjBjaRiDPtq9/view" },
+            { id: 101, name: "SERI MEWARNAI HEWAN 9", link: "https://drive.google.com/file/d/116waxN3XZaZJQLx5cVAOWQiEwgUc9w5Z/view" },
+            { id: 102, name: "SERI MEWARNAI BUAH A", link: "https://drive.google.com/file/d/1fKGDm42w10YlQgQpPkWyy8-9NcjNbvtW/view" },
+            { id: 103, name: "SERI MEWARNAI MOBIL", link: "https://drive.google.com/file/d/1kOF5vtVODUsq0e77UZTd9QL3gDjTyieS/view" },
+            { id: 104, name: "SERI MEWARNAI HEWAN 10", link: "https://drive.google.com/file/d/1JX9LGnRbZcpRCBFCxmTWjfPG1lPVqvtb/view" },
+            { id: 105, name: "SERI MEWARNAI SAYUR", link: "https://drive.google.com/file/d/1kH2KDqZzyfVkPE4Elwiwqz9h0gbCwC3x/view" },
+            { id: 106, name: "SERI TEBAK GAMBAR", link: "https://drive.google.com/file/d/1r7GMTGuQo7aMvS0YpoN20F2xC51mnjDK/view" },
+            { id: 107, name: "ARSITEKTUR", link: "https://drive.google.com/file/d/1GXrrh76mvQtA0mRdZ3pFczgTNYseWwQi/view" },
+            { id: 108, name: "ALAT BERAT", link: "https://drive.google.com/file/d/1yhCSUBNFVYN06F82-lU3Jb9IwZu25f9-/view" },
+            { id: 109, name: "SERI MUSLIM", link: "https://drive.google.com/file/d/1VqTWn8jsgfFHGQcfpv-Jfv0iO7tpCmgh/view" },
+            { id: 110, name: "SERI CAMPURAN NEW", link: "https://drive.google.com/file/d/1f62vRmecgdKTQsgRQXnxUQJHlY1W-itN/view" },
+            { id: 111, name: "SERI MEWARNAI BUAH", link: "https://drive.google.com/file/d/16xbB1HbL2LxPriLiAY3nn037DG7IVNDd/view" },
+            { id: 112, name: "SERI KUMPULAN SAYUR", link: "https://drive.google.com/file/d/1Oc0k2XVG0Qo08g0wpX7BTW1kSVX4QSgU/view" },
+            { id: 113, name: "SERI BUAH PILIHAN", link: "https://drive.google.com/file/d/1AXShgjdoxz1l1VAz2m1TS24L-Fu73Imt/view" },
+            { id: 114, name: "SERI KARIR & PROFESI", link: "https://drive.google.com/file/d/1cX3DPC5pqgCsxeyqmXPvONAhbRYAOBAX/view" },
+            { id: 115, name: "SERI BUAH SEHAT", link: "https://drive.google.com/file/d/1nI3IT33QACm3I4zlW9T3VEFt9--7LTOC/view" },
+            { id: 116, name: "SERI BUAH ENAK", link: "https://drive.google.com/file/d/1ZRgo2bsaUoRn5IpxEfxIq0fVjVvBMqo3/view" },
+            { id: 117, name: "SERI OUTLINE HEWAN", link: "https://drive.google.com/file/d/167NtBLGT2avHWOEsNAezomjrxa2k6PST/view" },
+            { id: 118, name: "SERI OUTLINE BUNGA", link: "https://drive.google.com/file/d/1Ucd6gUOsA9zP1O3ka1cy1SVedjLAtqLQ/view" },
+            { id: 119, name: "SERI BARANG RUMAH", link: "https://drive.google.com/file/d/1FajTz9F66cm4xF2O9LjRb8FJk3rELPo7/view" },
+            { id: 120, name: "SERI BUAH SEGAR B", link: "https://drive.google.com/file/d/1grPtlNkzcz5gGgNYXT1C09v6sU8mG071/view" },
+            { id: 121, name: "SERI MENGENAL BUAH F", link: "https://drive.google.com/file/d/1AXSzKOQVyZs-z7P_P_Jb-p4czg-tEZmW/view" },
+            { id: 122, name: "MENGENAL PROFESI", link: "https://drive.google.com/file/d/12FHHpKVbGwc0pkV-tfRFq9bNDLba6M1q/view" },
+            { id: 123, name: "MENGENAL SAYUR", link: "https://drive.google.com/file/d/1jhVa9c9th7-VDiZXQMa8wjfpTZqvEENW/view" },
+            { id: 124, name: "SERI BINATANG LUCU", link: "https://drive.google.com/file/d/1ZyUxrPqtxfUWwh9Q7-lRUtLxax-wGg-K/view" },
+            { id: 125, name: "SERI MENGENAL BUAH G", link: "https://drive.google.com/file/d/1D7dU0P1dkSfc6w7PlQaoTy9gBAaAUxLc/view" },
+            { id: 126, name: "SERI TRANSPORTASI KOTA", link: "https://drive.google.com/file/d/1xb_riff_SAsulEZjrVB4U_ejbv_IxLY_/view" },
+            { id: 127, name: "SERI HEWAN TERNAK", link: "https://drive.google.com/file/d/1dQRj0lG6fJ7sP337m_PgHccC2Gld6iGm/view" },
+            { id: 128, name: "SERI MACAM SAYUR", link: "https://drive.google.com/file/d/1qX57L14oeUeEmPWBp9yD_ky0tAo8Xcbe/view" },
+            { id: 129, name: "SERI OUTLINE BUNGA 2", link: "https://drive.google.com/file/d/1dGL4-oYi01VRCstOCVwl5FObJ2bdQgHi/view" },
+            { id: 130, name: "SERI BUAH TROPIS", link: "https://drive.google.com/file/d/1UxbYTJFO2qKzcBS521wYldEE4tEstKXM/view" },
+            { id: 131, name: "SERI BUAH TROPIS 2", link: "https://drive.google.com/file/d/1izyd6uMOjzqGMcVUdyhngdVdRPzZ7-b7/view" },
+            { id: 132, name: "SERI BONEKA LUCU", link: "https://drive.google.com/file/d/1HREZ65_7LTOcR_7_fG7ec7cCbpshPqzo/view" },
+            { id: 133, name: "SERI BINATANG RIMBA", link: "https://drive.google.com/file/d/1dP67vSne9pOKpMlQYTSNcifWvoDfYfeQ/view" },
+            { id: 134, name: "SERI MEWARNAI BANGUNAN", link: "https://drive.google.com/file/d/10zRGnUsVU4rzexlDjd0VvnPgFAB-iFWv/view" },
+            { id: 135, name: "SERI BUNGA - BUNGAAN", link: "https://drive.google.com/file/d/1Q8hRCgJZL23lIXp5AClF6j5xq02R-go5/view" },
+            { id: 136, name: "SERI SAYURAN SAYURAN", link: "https://drive.google.com/file/d/1KZ4UDxpNmXCT_dLOPvDdR3i2DInMZ0g3/view" },
+            { id: 137, name: "SERI HEWAN LAUT B", link: "https://drive.google.com/file/d/1RLKVnHGeULLz56DgnzEzNGWFSqY8O5H7/view" },
+            { id: 138, name: "SERI MEWARNAI MAKANAN", link: "https://drive.google.com/file/d/1udGShjRX2ysc46jdcSdFz3q-PV2vaeWz/view" },
+            { id: 139, name: "SERI BUAH", link: "https://drive.google.com/file/d/1jkpYlo6uOQSbQQIwmPwwOmQj6iOqCEGN/view" },
+            { id: 140, name: "SERI MEWARNAI BINATANG", link: "https://drive.google.com/file/d/1S4CcusbnsrguPpOgyVHu3KN9rjzkTaQH/view" },
+            { id: 141, name: "SERI MEWARNAI BINATANG", link: "https://drive.google.com/file/d/1KWKgwTjpf-5GXsWZSO8H_af_8hiGGavO/view" },
+            { id: 142, name: "SERI ALAT MUSIK", link: "https://drive.google.com/file/d/1AKO7r5hVO4LDIogMAb_TdV9sutHrhwtw/view" },
+            { id: 143, name: "SERI KENDARAAN", link: "https://drive.google.com/file/d/1sdbb5BnjIxCxJOmybS6Q1cZb1KVG36QL/view" },
+            { id: 144, name: "SERI ANIMALS", link: "https://drive.google.com/file/d/1YDCecgTGFFIod5HfbLLydDYI9sw0u73Z/view" },
+            { id: 145, name: "SERI MEWARNAI BUNGA", link: "https://drive.google.com/file/d/1iwMII-hoyC8sVhGNCprmcp6mhNR-Nhp9/view" },
+            { id: 146, name: "SERI MEWARNAI BUAH", link: "https://drive.google.com/file/d/1IG3B-_ydWULDEVuX-0F_Fvj7Z1QT53dl/view" },
+            { id: 147, name: "SERI MEWARNAI BUAH", link: "https://drive.google.com/file/d/16xbB1HbL2LxPriLiAY3nn037DG7IVNDd/view" }
+        ];
+
+        // Daftar warna untuk ikon agar tampil playful (warna-warni)
+        const iconColors = [
+            'text-blue-400', 'text-pink-400', 'text-purple-400', 'text-orange-400', 'text-teal-400'
+        ];
+
+        // Fungsi untuk me-render (menampilkan) folder ke layar
+        function renderFolders(data) {
+            const container = document.getElementById('folderContainer');
+            const notFoundMsg = document.getElementById('notFoundMessage');
+            
+            // Bersihkan isi sebelumnya
+            container.innerHTML = '';
+
+            // Jika hasil pencarian kosong, tampilkan pesan
+            if (data.length === 0) {
+                notFoundMsg.classList.remove('hidden');
+                return;
+            } else {
+                notFoundMsg.classList.add('hidden');
+            }
+
+            // Loop untuk membuat elemen setiap folder
+            data.forEach((folder, index) => {
+                // Pilih warna secara berurutan dari daftar warna
+                const colorClass = iconColors[index % iconColors.length];
+                
+                // Jika link kosong (atau #), kita cegah klik
+                const href = (folder.link && folder.link !== '#') ? folder.link : 'javascript:void(0)';
+                const target = (folder.link && folder.link !== '#') ? '_blank' : '_self';
+
+                // Format HTML Kartu
+                const cardHTML = `
+                    <a href="${href}" target="${target}" class="relative folder-card clay-card p-4 sm:p-6 flex flex-col items-center justify-center text-center group cursor-pointer hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                        <span class="absolute top-2 left-3 sm:top-3 sm:left-4 text-xs sm:text-sm font-black text-text-main">
+                            ${folder.id}
+                        </span>
+                        <svg class="w-12 h-12 sm:w-16 sm:h-16 ${colorClass} mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300 drop-shadow-sm" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"></path>
+                        </svg>
+                        <span class="folder-title font-bold text-xs min-[375px]:text-sm text-text-main leading-snug line-clamp-2">
+                            ${folder.name}
+                        </span>
+                    </a>
+                `;
+                
+                // Masukkan ke dalam container
+                container.innerHTML += cardHTML;
+            });
+        }
+
+        // Tampilkan semua data saat halaman pertama kali dibuka
+        renderFolders(foldersData);
+
+        // Fitur Pencarian (Search)
+        const searchInput = document.getElementById('searchInput');
+        
+        searchInput.addEventListener('input', function(e) {
+            const keyword = e.target.value.toLowerCase();
+            
+            // Saring (filter) data berdasarkan nama yang diketik
+            const filteredData = foldersData.filter(folder => 
+                folder.name.toLowerCase().includes(keyword)
+            );
+            
+            // Render ulang dengan data yang sudah disaring
+            renderFolders(filteredData);
+        });
+
+    </script>
+</body>
+</html>
